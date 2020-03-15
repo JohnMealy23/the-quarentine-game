@@ -31,14 +31,14 @@ export const frames: Frame[] = [
     },
     {
         id: 2,
-        action: '',
+        action: 'The neighbors are coughing too loud.',
         options: [
             {
-                text: 'Go to the store.',
-                id: 3
+                text: 'Brush teeth.',
+                id: 1
             },
             {
-                text: 'Use baking soda.',
+                text: 'Put the pillow over your head.',
                 id: 4
             }
         ]
