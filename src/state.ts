@@ -34,11 +34,21 @@ import { Frame } from "./types"
  * by one.  This means the `state` will serve as a record
  * of the Frames the user traverses.
  *
- * Finally, after any change to the state (thus, outside of
+ * Finally, after *any* change to the state (thus, outside of
  * any `if` statement), the `updateState` function concludes
- * by calling another function - the `next` funtion.
+ * by calling another function - the `next` funtion.  When
+ * the `next` function is called, the entire `state` array
+ * is passed into the `next` function.
+ *
  * For now we'll just define the `next` function as:
  * () => {}
+ *
+ * Last note - though those are a lot of words, the
+ * actual `updateState` function is very short.  One `if`
+ * statement.  One push to an existing array.  One call
+ * to another function.
+ *
+ * Pretty simple. : )
  */
 
 let state: Frame[] = [frames[0]]

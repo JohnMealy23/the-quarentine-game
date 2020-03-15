@@ -27,6 +27,13 @@ import { frames } from "./frames"
  *   - The frame you've pulled from the `frames` array,
  *     which matches the `id` passed into the `move`
  *     function.
+ *
+ * Last note - though those are a lot of words, the
+ * actual `move` function is very short.  Define a new
+ * variable by finding an entry in an array.  Call
+ * another function with what you've found and a string.
+ *
+ * Pretty simple. : )
  */
 export const move = () => {
 

@@ -23,17 +23,20 @@ import { Frame } from "./types";
  *   - A `ul` element, to contain the options the user
  *     has.
  *
- *   - The view function loops through the `options`
- *     array of the Frame, creating an `li` element
- *     for each option, and appending it to the `ul`.
+ *   - An `li` element for every option in the Frame's
+ *     `options` array. The view function will need to
+ *     loop through the `options` array, creating an
+ *     `li` element for each option, and appending it
+ *     to the `ul`.
  *
- *       - Each `option` `li` contains the text of the
- *         option.
+ *       - Each `option` `li` should contain the text
+ *         of the option.
  *
- *       - We also add a click event to each `option`
+ *       - We also need to add a click event to each
  *         `li`, using the `addEventListener` method.
- *         For now, the function the `addEventListener`s
- *         call can just look like this: () => {}
+ *         For now, the function we add with
+ *         `addEventListener`s can just look like this:
+ *         () => {}
  *
  * Don't forget to insert each of the above-mentioned
  * elements into their `container` divs, and to insert
