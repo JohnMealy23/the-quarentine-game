@@ -17,7 +17,7 @@ This is the game we make while the world falls to pieces.
 ### Install the Builder
 For the code to run, it needs to be built into a "bundle".
 
-This means the code we write needs to be turned converted (transpiled) into JavaScript a browser can understand, and brought into a single file (the bundle) from the disparate files we create.
+This means the code we write needs to be converted (transpiled) into JavaScript a browser can understand, and brought into a single file (the bundle) from the disparate files we create.
 
 We'll use Parcel as our bundler.  It's an open-source NPM pacakge that will build our code, as well as run the local server where we can see our code functioning.
 
