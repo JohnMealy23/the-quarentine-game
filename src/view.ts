@@ -15,7 +15,7 @@ import { Frame } from "./types";
  * which will serve as the container for all of the
  * Frame's elements. Using `container.appendChild`,
  * we'll insert the following elements into the
- * container.
+ * container:
  *
  *   - An h2 element, into which we'll insert the Frame's
  *     `action` text.

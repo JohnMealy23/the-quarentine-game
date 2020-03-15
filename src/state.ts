@@ -20,7 +20,7 @@ import { Frame } from "./types"
  * The `updateState` function will handle many different
  * situations.  We don't need to worry about what all those
  * situations are right now - we'll tackle each of them as
- * we come.  For now, let's just work on the first case.
+ * they come.  For now, let's just work on the first case.
  *
  * Inside the body of the `updateState`, create an `if`
  * statement, which tests the value of the `type` argument.
