@@ -28,7 +28,7 @@ npm install -g parcel-bundler --save-dev
 
 Note the `-g` in the above command.  Usually when we use the `npm install {package-name} --save` command, the package we're installing is added to the project's package.json file.  However, when using the `-g` flag, this indicates to NPM that you'd like the package installed "globally".  This means global to your entire system - not just in the project we're in.
 
-In general global dependencies are to be avoided.  The main reason: When sharing a project, a new user should be able to simply run `npm install`, and all of the necessary code should come rushing down to the user's local environment.
+In general, global dependencies are to be avoided.  The main reason: When sharing a project, a new user should be able to simply run `npm install`, and all of the necessary code should come rushing down to the user's local environment.
 
 But how does NPM know what the necessary code is?  Why because it's in the package.json!
 
