@@ -34,7 +34,7 @@ But how does NPM know what the necessary code is?  Why, because it's in the pack
 
 But when we install something globally, it doesn't go into the project's package.json.  Thus, new users will `npm install`, then be confused by still not being able to run the project.
 
-In the case of Parcel, it's doing some crazy system-wide stuff, that just can't be contained by the project.  For this reason, the global installation is still necessary, as is the note in this README, telling you to install it before things will work.
+In the case of Parcel, it's doing some crazy system-wide stuff that just can't be contained by the project.  For this reason, the global installation is still necessary, as is the note in this README, telling you to install it before things will work.
 
 ### Start the App
 To start testing as we build, we'll need to both build the code, then start our local test server.  This will make it possible to go into a browser and see the code we write, as we make changes.
