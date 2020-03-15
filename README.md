@@ -30,7 +30,7 @@ Note the `-g` in the above command.  Usually when we use the `npm install {packa
 
 In general, global dependencies are to be avoided.  The main reason: When sharing a project, a new user should be able to simply run `npm install`, and all of the necessary code should come rushing down to the user's local environment.
 
-But how does NPM know what the necessary code is?  Why because it's in the package.json!
+But how does NPM know what the necessary code is?  Why, because it's in the package.json!
 
 But when we install something globally, it doesn't go into the project's package.json.  Thus, new users will `npm install`, then be confused by still not being able to run the project.
 
