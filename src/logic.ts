@@ -7,9 +7,9 @@ import { frames } from "./frames"
  *
  * For starters, we'll just need one function in the
  * logic.ts file: the `move` function.  This function
- * accepts an argument named `id`. `id` is single number.
+ * accepts an argument named `id`. `id` is a single number.
  *
- * Note we've pulled in `frames` at the top of this file.
+ * Note that we've pulled in `frames` at the top of this file.
  * The `move` function needs to loop through the
  * `frames`, finding the one that matches the `id`
  * argument it's been given.  It then needs to call
@@ -26,7 +26,7 @@ import { frames } from "./frames"
  *
  *   - The frame you've pulled from the `frames` array,
  *     which matches the `id` passed into the `move`
- *     function.
+ *     function
  */
 export const move = () => {
 
