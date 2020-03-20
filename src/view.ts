@@ -1,4 +1,5 @@
-import { Frame } from "./types";
+import { Frame, Option } from "./types";
+import { frames } from "./frames";
 
 /**
  * The view function takes an array of Frame objects as
@@ -16,7 +17,6 @@ import { Frame } from "./types";
  * Frame's elements. Using `container.appendChild`,
  * we'll insert the following elements into the
  * container:
- *
  *   - An h2 element, into which we'll insert the Frame's
  *     `action` text.
  *
@@ -45,4 +45,64 @@ import { Frame } from "./types";
 
 export const view = (frames: Frame[]) => {
 
+    frames.map(makeFrameElements)
+
+}
+
+const makeFrameElements = (frame: Frame) => {
+
+    const container = document.createElement("div")
+    document.body.appendChild(container)
+
+//     *   - An h2 element, into which we'll insert the Frame's
+//  *     `action` text.
+//  *
+
+    const actionElement = document.createElement("h2")
+    actionElement.innerText = frame.action
+    container.appendChild(actionElement)
+//  *
+//  *   - A `ul` element, to contain the options the user
+//  *     has.
+
+    const optionsUl = document.createElement("ul")
+    container.appendChild(optionsUl)
+
+//  *
+//  *   - An `li` element for every option in the Frame's
+//  *     `options` array. The view function will need to
+//  *     loop through the `options` array, creating an
+//  *     `li` element for each option, and appending it
+//  *     to the `ul`.
+//  *
+
+    const liCallback = (option: Option) => {
+
+        // {
+        //     text: 'Brush your teeth.',
+        //     id: 1
+        // },
+
+        const frank = document.createElement("li")
+        frank.innerText = option.text
+        optionsUl.appendChild(frank)
+        frank.addEventListener('click', () => {
+            console.log(option)
+        })
+    }
+    frame.options.map(liCallback)
+
+//  *       - Each `option` `li` should contain the text
+//  *         of the option.
+//  *
+//  *       - We also need to add a click event to each
+//  *         `li`, using the `addEventListener` method.
+//  *         For now, the function we add with
+//  *         `addEventListener`s can just look like this:
+//  *         () => {}
+//  *
+//  * Don't forget to insert each of the above-mentioned
+//  * elements into their `container` divs, and to insert
+//  * each `constainer` div into the DOM!
+//  */
 }
