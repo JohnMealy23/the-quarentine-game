@@ -43,6 +43,4 @@ import { Frame } from "./types";
  * each `constainer` div into the DOM!
  */
 
-export const view = (frames: Frame[]) => {
-
-}
+export const view = (frames: Frame[]) => {}
