@@ -3,4 +3,4 @@ import { frames } from "./frames";
 import { move } from './logic'
 import { view } from "./view";
 
-view(frames)
+move(0)

@@ -1,5 +1,5 @@
 import { Frame, Option } from "./types";
-import { frames } from "./frames";
+import { move } from "./logic";
 
 /**
  * The view function takes an array of Frame objects as
@@ -44,15 +44,18 @@ import { frames } from "./frames";
  */
 
 export const view = (frames: Frame[]) => {
+    const gameContainer = document.getElementById('content')
+    gameContainer.innerHTML = ''
 
-    frames.map(makeFrameElements)
+    const frameElems = frames.map(makeFrameElements)
+
+    frameElems.forEach(frameElem => gameContainer.appendChild(frameElem))
 
 }
 
 const makeFrameElements = (frame: Frame) => {
 
     const container = document.createElement("div")
-    document.body.appendChild(container)
 
 //     *   - An h2 element, into which we'll insert the Frame's
 //  *     `action` text.
@@ -87,11 +90,12 @@ const makeFrameElements = (frame: Frame) => {
         frank.innerText = option.text
         optionsUl.appendChild(frank)
         frank.addEventListener('click', () => {
-            console.log(option)
+            move(option.id)
         })
     }
     frame.options.map(liCallback)
 
+    return container
 //  *       - Each `option` `li` should contain the text
 //  *         of the option.
 //  *

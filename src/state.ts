@@ -1,5 +1,6 @@
 import { frames } from "./frames"
 import { Frame } from "./types"
+import { view } from "./view"
 
 /**
  * An application's state is the memory of the application.
@@ -51,13 +52,13 @@ import { Frame } from "./types"
  * Pretty simple. : )
  */
 
-let state: Frame[] = [frames[0]]
+export type State = Frame[]
 
-const updateState = (type, payload) => {
+let state: State = []
+
+export const updateState = (type, payload) => {
     if (type === 'proceed') {
         state.push(payload)
     }
-    next(state)
+    view(state)
 }
-
-const next = () => {}
