@@ -1,10 +1,10 @@
+import { updateState } from "./state"
 import { frames } from "./frames"
 
 /**
  * logic.ts is a file where we'll write functions that
  * react to user behaviors, and make decisions based on
  * the state of the application.
- * 
  *
  * For starters, we'll just need one function in the
  * logic.ts file: the `move` function.  This function
@@ -37,19 +37,13 @@ import { frames } from "./frames"
  * Pretty simple. : )
  */
 
-
-// For starters, we'll just need one function in the
-// logic.ts file: the `move` function.  This function
-// accepts an argument named `id`. `id` is a single number.
 export const move = (id: number) => {
-    // loop through, find id
-    const callback = (framesItem) => {
-        // it then calls another function with this        
-        return framesItem.id === id
+
+    const callback = (frame) => {
+        return frame.id === id
     }
-    const matchingItem = frames.find(callback)
-    updateState('proceed', matchingItem)
+
+    const frame = frames.find(callback)
+
+    updateState('proceed', frame)
 }
-
-const updateState = (type, payload) => { }
-
