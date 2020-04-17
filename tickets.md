@@ -1,7 +1,6 @@
 Tickets
 
 bugs:
-  * ... but don't lose the banner
 * User can still click old bulletpoints.  Should only be able to click the last ones.
 * Deal with end-of-the-line
 
