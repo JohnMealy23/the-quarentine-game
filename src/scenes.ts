@@ -1,6 +1,6 @@
-import { Frame } from "./types"
+import { scene } from "./types"
 
-export const frames: Frame[] = [
+export const scenes: scene[] = [
     {
         id: 0,
         action: 'You wake up in the morning',
@@ -116,8 +116,21 @@ export const frames: Frame[] = [
     {
         // Netflix:
         id: 8,
-        action: '',
-        options: []
+        action: 'Your subscription has expired!',
+        options: [
+            {
+                text: 'beg your cousin for his login',
+                id: 12
+            },
+            {
+                text: 'pirate it',
+                id: 13
+            },
+            {
+                text: 'watch Hulu instead',
+                id: 14
+            }
+        ]
     },
     {
         // Bodega:

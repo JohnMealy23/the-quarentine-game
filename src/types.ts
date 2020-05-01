@@ -3,7 +3,7 @@ export type Option = {
     id: number;
 }
 
-export type Frame = {
+export type Scene = {
     id: number;
     action: string;
     options: Option[]

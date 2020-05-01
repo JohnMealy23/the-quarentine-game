@@ -1,5 +1,5 @@
 import { updateState } from "./state"
-import { frames } from "./frames"
+import { scenes } from "./scenes"
 
 /**
  * logic.ts is a file where we'll write functions that
@@ -10,9 +10,9 @@ import { frames } from "./frames"
  * logic.ts file: the `move` function.  This function
  * accepts an argument named `id`. `id` is a single number.
  *
- * Note that we've pulled in `frames` at the top of this file.
+ * Note that we've pulled in `scenes` at the top of this file.
  * The `move` function needs to loop through the
- * `frames`, finding the one that matches the `id`
+ * `scenes`, finding the one that matches the `id`
  * argument it's been given.  It then needs to call
  * another function with this.
  *
@@ -25,7 +25,7 @@ import { frames } from "./frames"
  *
  *   - The string, 'proceed'
  *
- *   - The frame you've pulled from the `frames` array,
+ *   - The scene you've pulled from the `scenes` array,
  *     which matches the `id` passed into the `move`
  *     function
  *
@@ -39,11 +39,15 @@ import { frames } from "./frames"
 
 export const move = (id: number) => {
 
-    const callback = (frame) => {
-        return frame.id === id
+    const callback = (scene) => {
+        return scene.id === id
     }
 
-    const frame = frames.find(callback)
-
-    updateState('proceed', frame)
+    const scene = scenes.find(callback)
+    if(scene === undefined) {
+        const endOfLine = document.createElement("h2")
+        endOfLine.textContent = 'The End'
+        document.body.appendChild(endOfLine)
+    }
+    updateState('proceed', scene)
 }
