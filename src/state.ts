@@ -1,5 +1,5 @@
-import { frames } from "./frames"
-import { Frame } from "./types"
+import { scenes } from "./scenes"
+import { scene } from "./types"
 import { view } from "./view"
 
 /**
@@ -9,7 +9,7 @@ import { view } from "./view"
  *
  * In this case, the application's state is represented by
  * an array.  This array holds every step (we'll call them
- * "frames") the user takes through the application.
+ * "scenes") the user takes through the application.
  *
  * The `updateState` function takes two arguments: `type` and
  * `payload`:
@@ -28,12 +28,12 @@ import { view } from "./view"
  * If the `type` argument is the word "proceed", simply
  * `push` the `payload` argument into `state` array.  Though
  * we don't explicitly state it here, the `payload` in this
- * case will be a Frame from the `frames.ts` file.
+ * case will be a scene from the `scenes.ts` file.
  *
  * In this way, every time `updateState` is called with the
  * `type` of "proceed", the `state` array grows in length
  * by one.  This means the `state` will serve as a record
- * of the Frames the user traverses.
+ * of the scenes the user traverses.
  *
  * Finally, after *any* change to the state (thus, outside of
  * any `if` statement), the `updateState` function concludes
@@ -52,7 +52,7 @@ import { view } from "./view"
  * Pretty simple. : )
  */
 
-export type State = Frame[]
+export type State = scene[]
 
 let state: State = []
 
@@ -61,4 +61,6 @@ export const updateState = (type, payload) => {
         state.push(payload)
     }
     view(state)
+    const newUrl = URL.createObjectURL(state)
+    return newUrl
 }
