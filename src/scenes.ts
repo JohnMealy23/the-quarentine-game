@@ -1,6 +1,6 @@
-import { scene } from "./types"
+import { Scene } from "./types"
 
-export const scenes: scene[] = [
+export const scenes: Scene[] = [
     {
         id: 0,
         action: 'You wake up in the morning',

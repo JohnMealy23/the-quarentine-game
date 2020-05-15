@@ -1,5 +1,6 @@
 import { updateState } from "./state"
 import { scenes } from "./scenes"
+import { Scene } from "./types"
 
 /**
  * logic.ts is a file where we'll write functions that
@@ -39,10 +40,10 @@ import { scenes } from "./scenes"
 
 export const move = (id: number) => {
 
-    const callback = (scene) => {
+    const callback = (scene: Scene): boolean => {
         return scene.id === id
     }
-
+    
     const scene = scenes.find(callback)
     if(scene === undefined) {
         const endOfLine = document.createElement("h2")
