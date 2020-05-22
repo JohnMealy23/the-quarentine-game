@@ -1,5 +1,5 @@
 import { scenes } from "./scenes"
-import { scene } from "./types"
+import { Scene } from "./types"
 import { view } from "./view"
 
 /**
@@ -52,7 +52,7 @@ import { view } from "./view"
  * Pretty simple. : )
  */
 
-export type State = scene[]
+export type State = Scene[]
 
 let state: State = []
 
@@ -61,6 +61,15 @@ export const updateState = (type, payload) => {
         state.push(payload)
     }
     view(state)
-    const newUrl = URL.createObjectURL(state)
-    return newUrl
+    updateUrl()
+
+}
+
+
+const updateUrl = () => {
+    const stateIds = state.map((scene) => {
+        return scene.id
+    }).join(';')
+    history.pushState(state, 'title', '?' + stateIds)
+    console.log(state)
 }

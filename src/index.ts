@@ -1,6 +1,18 @@
-import { updateState } from "./state";
-import { frames } from "./frames";
 import { move } from './logic'
-import { view } from "./view";
 
-move(0)
+const userProgress = window.location.search.replace('?', '')
+if (userProgress === '') {
+    move(0)
+} else {
+
+    const stateIds = userProgress.split(';')
+
+
+    console.log(userProgress)
+
+    const callbackMove = (id) => {
+        const numId = parseInt(id)
+        move(numId)
+    }
+    stateIds.forEach(callbackMove)
+}
