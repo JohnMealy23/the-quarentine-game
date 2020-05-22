@@ -90,6 +90,7 @@ const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
 
         const optionLi = document.createElement("li")
         optionLi.innerText = option.text
+        optionLi.className = 'option'
         optionsUl.appendChild(optionLi)
         optionLi.addEventListener('click', () => {
             if(lastScene) {
