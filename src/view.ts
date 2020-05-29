@@ -43,7 +43,7 @@ import { move } from "./logic";
  * each `constainer` div into the DOM!
  */
 
- //scene[] contains all the scenes previously selected by player
+//scene[] contains all the scenes previously selected by player
 export const view = (scenes: Scene[]) => {
     const gameContainer = document.getElementById('content')
     gameContainer.innerHTML = ''
@@ -55,31 +55,42 @@ export const view = (scenes: Scene[]) => {
     window.scrollTo(0, 1000)
 }
 
+
 const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
     const lastScene = index + 1 === scenes.length
     const container = document.createElement("div")
-
-//     *   - An h2 element, into which we'll insert the scene's
-//  *     `action` text.
-//  *
+    container.style.width = '450px'
+    container.style.height = 'auto'
+    container.style.border = '1px solid grey'
+    container.style.marginBottom = '5px'
+    container.style.padding = '5px'
+    //     *   - An h2 element, into which we'll insert the scene's
+    //  *     `action` text.
+    //  *
 
     const actionElement = document.createElement("h2")
     actionElement.innerText = scene.action
     container.appendChild(actionElement)
-//  *
-//  *   - A `ul` element, to contain the options the user
-//  *     has.
+    //  *
+    //  *   - A `ul` element, to contain the options the user
+    //  *     has.
+
+    const imageElement = document.createElement('img')
+    imageElement.src = scene.image
+    imageElement.className = 'sceneImage'
+    container.appendChild(imageElement)
+
 
     const optionsUl = document.createElement("ul")
     container.appendChild(optionsUl)
 
-//  *
-//  *   - An `li` element for every option in the scene's
-//  *     `options` array. The view function will need to
-//  *     loop through the `options` array, creating an
-//  *     `li` element for each option, and appending it
-//  *     to the `ul`.
-//  *
+    //  *
+    //  *   - An `li` element for every option in the scene's
+    //  *     `options` array. The view function will need to
+    //  *     loop through the `options` array, creating an
+    //  *     `li` element for each option, and appending it
+    //  *     to the `ul`.
+    //  *
 
     const liCallback = (option: Option) => {
 
@@ -93,9 +104,10 @@ const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
         optionLi.className = 'option'
         optionsUl.appendChild(optionLi)
         optionLi.addEventListener('click', () => {
-            if(lastScene) {
+            if (lastScene) {
                 move(option.id)
-            } 
+
+            }
             //????? my final guess
         })
 
@@ -115,20 +127,20 @@ const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
     // optionLi.removeEventListener('click', () => {
     //     move(option.id)
     // })
-  
+
     // User can still click old bulletpoints.  Should only be able to click the last ones.
 
-//  *       - Each `option` `li` should contain the text
-//  *         of the option.
-//  *
-//  *       - We also need to add a click event to each
-//  *         `li`, using the `addEventListener` method.
-//  *         For now, the function we add with
-//  *         `addEventListener`s can just look like this:
-//  *         () => {}
-//  *
-//  * Don't forget to insert each of the above-mentioned
-//  * elements into their `container` divs, and to insert
-//  * each `constainer` div into the DOM!
-//  */
+    //  *       - Each `option` `li` should contain the text
+    //  *         of the option.
+    //  *
+    //  *       - We also need to add a click event to each
+    //  *         `li`, using the `addEventListener` method.
+    //  *         For now, the function we add with
+    //  *         `addEventListener`s can just look like this:
+    //  *         () => {}
+    //  *
+    //  * Don't forget to insert each of the above-mentioned
+    //  * elements into their `container` divs, and to insert
+    //  * each `constainer` div into the DOM!
+    //  */
 }
