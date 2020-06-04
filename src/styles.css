@@ -1,0 +1,9 @@
+.sceneImage {
+    width: 450px;
+    height: auto;
+}
+
+.option {
+    color:blue;
+    cursor: pointer;
+}

@@ -6,5 +6,6 @@ export type Option = {
 export type Scene = {
     id: number;
     action: string;
-    options: Option[]
+    options: Option[];
+    image: string;
 }
