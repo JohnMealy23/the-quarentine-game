@@ -1,5 +1,7 @@
 import { Scene, Option } from "./types";
 import { move } from "./logic";
+import { scenes } from "./scenes";
+import { updateState } from "./state";
 
 /**
  * The view function takes an array of scene objects as
@@ -48,9 +50,34 @@ export const view = (scenes: Scene[]) => {
     const gameContainer = document.getElementById('content')
     gameContainer.innerHTML = ''
 
+    // const sceneButtonCallback = () => {
+    //     const sceneButton = document.getElementbyId('button')
+    //         //why doesn't getElementbyId exist as a property of document?
+    //     sceneButton.innerText = 'Edit'
+    //     gameContainer.appendChild(sceneButton)
+    // }
+    // scenes.forEach(sceneButtonCallback)
+
+    // const sceneButton = () => {
+    //     const sceneButton = document.getElementById('button')
+    //     sceneButton.innerHTML = 'Edit'
+    // }
+
     const sceneElems = scenes.map(makeSceneElements)
 
     sceneElems.forEach(sceneElem => gameContainer.appendChild(sceneElem))
+    // sceneElems.forEach(sceneButton => gameContainer.appendChild(sceneButton))
+
+    //add a button to each scene
+
+    // const sceneButton = () => {
+    // const sceneButton = document.getElementById('button')
+    // sceneButton.innerHTML = 'Edit'
+    // gameContainer.appendChild(sceneButton)    
+    // }
+    // sceneElems.forEach(sceneElem => gameContainer.appendChild(sceneElem))
+
+
     // TODO: scroll user to bottom
     window.scrollTo(0, 1000)
 }
@@ -68,9 +95,38 @@ const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
     //  *     `action` text.
     //  *
 
-    const actionElement = document.createElement("h2")
-    actionElement.innerText = scene.action
+    // create scenes title
+    let actionElement
+    if (scene.editing === true) {
+        actionElement = document.createElement('input')
+    } else {
+        actionElement = document.createElement("h2")
+        actionElement.innerText = scene.action
+    }
     container.appendChild(actionElement)
+
+    // create edit button
+    const actionElementButton = document.createElement('button')
+    actionElementButton.innerText = 'Edit'
+    container.appendChild(actionElementButton)
+    actionElementButton.style.marginBottom = '10px'
+    actionElementButton.style.padding = '5px'
+    actionElementButton.addEventListener('click', () => {
+        updateState('editMode', scene.id)
+    })
+
+    if (scene.editing === true) {
+        const saveButton = document.createElement('button')
+        saveButton.innerText = 'Save'
+        container.appendChild(saveButton)
+        saveButton.addEventListener('click', () => {
+            scene.action = actionElement.value
+            scene.editing = false
+            updateState('save', scene)
+        })
+    }
+
+
     //  *
     //  *   - A `ul` element, to contain the options the user
     //  *     has.
@@ -79,7 +135,6 @@ const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
     imageElement.src = scene.image
     imageElement.className = 'sceneImage'
     container.appendChild(imageElement)
-
 
     const optionsUl = document.createElement("ul")
     container.appendChild(optionsUl)

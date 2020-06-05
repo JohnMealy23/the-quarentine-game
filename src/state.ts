@@ -56,9 +56,28 @@ export type State = Scene[]
 
 let state: State = []
 
-export const updateState = (type, payload) => {
-    if (type === 'proceed') {
+export const updateState = (action, payload) => {
+    if (action === 'proceed') {
+        state = state.map((scene) => {
+            return scene
+        })
         state.push(payload)
+    } else if (action === 'editMode') {
+        const stateCallback = (scene: Scene) => {
+            if (payload === scene.id) {
+                scene.editing = true
+            }
+            return scene
+        }
+        state = state.map(stateCallback)
+    } else if (action === 'save') {
+        const saveCallback = (scene: Scene) => {
+            if (payload.id === scene.id) {
+                return payload
+            }
+            return scene
+        }
+        state = state.map(saveCallback)
     }
     view(state)
     updateUrl()
