@@ -166,6 +166,27 @@ const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
             //????? my final guess
         })
 
+        //create edit button
+        const optionLiButton = document.createElement('button')
+        optionLiButton.innerText = 'Edit'
+        optionLi.appendChild(optionLiButton)
+        optionLiButton.style.marginBottom = '10px'
+        optionLiButton.style.padding = '5px'
+        optionLiButton.addEventListener('click', () => {
+            updateState('editOptionMode', scene.options)
+        })
+
+        if (scene.editing === true) {
+            const saveOptionButton = document.createElement('button')
+            saveOptionButton.innerText = 'Save'
+            optionLi.appendChild(saveOptionButton)
+            saveOptionButton.addEventListener('click', () => {
+                scene.options = optionLi.value
+                    scene.editing = false
+                updateState('saveOption', scene)
+            })
+        }
+
         // return optionLi.addEventListener('click', () => {
         //     move(option.id)
         // })

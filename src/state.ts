@@ -70,7 +70,23 @@ export const updateState = (action, payload) => {
             return scene
         }
         state = state.map(stateCallback)
+    } else if (action === 'editoptionMode') {
+        const stateCallback = (scene: Scene) => {
+            if (payload === scene.options) {
+                scene.editing = true
+            }
+            return scene
+        }
+        state = state.map(stateCallback)
     } else if (action === 'save') {
+        const saveCallback = (scene: Scene) => {
+            if (payload.id === scene.id) {
+                return payload
+            }
+            return scene
+        }
+        state = state.map(saveCallback)
+    } else if (action === 'saveOption') {
         const saveCallback = (scene: Scene) => {
             if (payload.id === scene.id) {
                 return payload
