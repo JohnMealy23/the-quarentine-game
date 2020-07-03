@@ -1,6 +1,7 @@
 import { updateState } from "./state"
 import { scenes } from "./scenes"
-import { Scene } from "./types"
+import { Scene, Option, LiInputs } from "./types"
+import { createEditButton } from "./view"
 
 /**
  * logic.ts is a file where we'll write functions that
@@ -38,17 +39,45 @@ import { Scene } from "./types"
  * Pretty simple. : )
  */
 
-export const move = (id: number) => {
+export const move = (id: number | void) => {
 
     const callback = (scene: Scene): boolean => {
         return scene.id === id
     }
-    
+
     const scene = scenes.find(callback)
-    if(scene === undefined) {
+    if (scene === undefined) {
         const endOfLine = document.createElement("h2")
         endOfLine.textContent = 'The End'
         document.body.appendChild(endOfLine)
     }
     updateState('proceed', scene)
+}
+const optionSaveCallback = ({optionLi, optionLiIdNumber}: LiInputs): Option => {
+    const text = optionLi.value
+    const id = optionLiIdNumber.value
+    return {
+        text,
+        id: Number(id),
+        //get admin's input for the optionLi the same way you got user input for optionLiText
+    }
+}
+
+export const saveSceneEdits = (scene: Scene, actionElement, optionLiArray, imageElement) => {
+    scene.action = actionElement.value
+    const optionLiArrayText = optionLiArray.map(optionSaveCallback)
+    scene.options = optionLiArrayText
+    scene.image = imageElement.value
+    // switch editing mode off
+    scene.editing = false
+    // save!
+    updateState('save', scene)
+    // const optionLiArray = [
+    //     {
+    //         value: 'I am whatever the user has input'
+    //     },
+    //     {
+    //         value: 'I am whatever the user has input'
+    //     },    
+    // ]
 }

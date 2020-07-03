@@ -1,5 +1,5 @@
 import { Scene, Option } from "./types";
-import { move } from "./logic";
+import { move, saveSceneEdits } from "./logic";
 import { scenes } from "./scenes";
 import { updateState } from "./state";
 
@@ -12,13 +12,21 @@ export const view = (scenes: Scene[]) => {
 
     sceneElems.forEach(sceneElem => gameContainer.appendChild(sceneElem))
 
+    const addSceneElement = document.createElement('button')
+    addSceneElement.innerText = 'create scene'
+    addSceneElement.addEventListener('click', addScene)
+    gameContainer.appendChild(addSceneElement)
     // scroll user to bottom
     window.scrollTo(0, 1000)
 }
+const addScene = () => {
+    updateState('addScene')
+}
 
-
-const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
+export const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
     const lastScene = index + 1 === scenes.length
+    //create a container for the scene.id and append that to the scenes container
+    //this gives admin the ability to see the id of every scene, so they know what to enter when creating a new scene / editing a scene
     const container = document.createElement("div")
     container.style.width = '450px'
     container.style.height = 'auto'
@@ -27,83 +35,84 @@ const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) => {
     container.style.padding = '5px'
 
     // create scenes title
-    let actionElement
+    let actionElement: HTMLInputElement | HTMLHeadingElement
     if (scene.editing === true) {
-        actionElement = document.createElement('input')
+        actionElement = document.createElement('input');
+        (actionElement as HTMLInputElement).value = scene.action
     } else {
         actionElement = document.createElement("h2")
         actionElement.innerText = scene.action
     }
     container.appendChild(actionElement)
 
+
     // create edit button
-    createEditButton(scene.id)
+    const editButton = createEditButton(scene.id)
+    container.appendChild(editButton)
 
     if (scene.editing === true) {
         const saveButton = document.createElement('button')
         saveButton.innerText = 'Save'
         container.appendChild(saveButton)
         saveButton.addEventListener('click', () => {
-            scene.action = actionElement.value
-            scene.editing = false
-            updateState('save', scene)
+            saveSceneEdits(scene, actionElement, optionLiArray, imageElement)
+            // update scene with new user input values
+
         })
     }
 
-
-    const imageElement = document.createElement('img')
-    imageElement.src = scene.image
-    imageElement.className = 'sceneImage'
+    //create image
+    let imageElement
+    if (scene.editing === true) {
+        imageElement = document.createElement('input');
+        imageElement.value = scene.image
+    } else {
+        imageElement = createImageElement(scene.image)
+    }
     container.appendChild(imageElement)
+
+    // if(scene.editing === true) {
+    //     sceneImage = document.createElement('input');
+    //     (sceneImage as HTMLInputElement).value = scene.image?
+    // } else {
+    //     createImageElement(scene.image)
+    // }  
+    // container.appendChild(sceneImage)  
+
 
     const optionsUl = document.createElement("ul")
     container.appendChild(optionsUl)
 
     const liCallback = (option: Option) => {
-
-        const optionLi = document.createElement("li")
-        optionLi.innerText = option.text
-        optionLi.className = 'option'
-        optionsUl.appendChild(optionLi)
-        optionLi.addEventListener('click', () => {
-            if (lastScene) {
-                move(option.id)
-
-            }
-          
-        })
-
-        //create edit button
-        const optionLiButton = document.createElement('button')
-        optionLiButton.innerText = 'Edit'
-        optionLi.appendChild(optionLiButton)
-        optionLiButton.style.marginBottom = '10px'
-        optionLiButton.style.padding = '5px'
-        optionLiButton.addEventListener('click', () => {
-            updateState('editOptionMode', scene.options)
-        })
-
+        let optionLi
+        let optionLiIdNumber
         if (scene.editing === true) {
-            const saveOptionButton = document.createElement('button')
-            saveOptionButton.innerText = 'Save'
-            optionLi.appendChild(saveOptionButton)
-            saveOptionButton.addEventListener('click', () => {
-                scene.options = optionLi.value
-                    scene.editing = false
-                updateState('saveOption', scene)
+            optionLi = document.createElement('input')
+            optionLi.value = option.text
+            optionLiIdNumber = document.createElement('input')
+            optionLiIdNumber.value = option.id
+            optionsUl.appendChild(optionLiIdNumber)
+        } else {
+            optionLi = document.createElement("li")
+            optionLi.innerText = option.text
+            optionLi.className = 'option'
+            optionLi.addEventListener('click', () => {
+                if (lastScene) {
+                    move(option.id)
+                }
             })
         }
-
-        // return optionLi.addEventListener('click', () => {
-        //     move(option.id)
-        // })
+        optionLi.id = option.id
+        optionsUl.appendChild(optionLi)
+        return { optionLi, optionLiIdNumber }
+        //somehow get this to return both optionLi and optionLiIdNumber
     }
-    scene.options.forEach(liCallback)
+    const optionLiArray = scene.options.map(liCallback)
 
     return container
 }
 
-const createEditButton = (sceneId) => {
+export const createEditButton = (sceneId) => {
     const editButton = document.createElement('button')
     editButton.innerText = 'Edit'
     editButton.style.marginBottom = '10px'
@@ -111,6 +120,12 @@ const createEditButton = (sceneId) => {
     editButton.addEventListener('click', () => {
         updateState('editMode', sceneId)
     })
-    container.appendChild(editButton)
     return editButton
+}
+
+const createImageElement = (sceneImage) => {
+    const imageElement = document.createElement('img')
+    imageElement.src = sceneImage
+    imageElement.className = 'sceneImage'
+    return imageElement
 }
