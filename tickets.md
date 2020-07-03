@@ -4,6 +4,13 @@
 
 ## Features
 
+* figure out why you get the undefines when you create scene. also why it goes haywire.
+
+* make the id# of each scene visible to admin
+* in editmode, we need to have a textbox for image
+* figure out how to make things better in general
+* click into the id of the new option, the id of the new option becomes the id of next scene user clicks. 'select next scene' option, which lets them click on the scene they want. 
+
 * Create a shopping list.  Trigger different outcomes based on it.
 
 * UI candy?
@@ -11,6 +18,8 @@
   + Shows you all the tracks (stack overflow danger!)
   + Allows you to select a frame
   + Allows you to add options to a frame
+* save from browser into harddrive
+
 
 ## Completed
 

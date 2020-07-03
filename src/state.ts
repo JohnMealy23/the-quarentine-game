@@ -1,6 +1,8 @@
 import { scenes } from "./scenes"
-import { Scene } from "./types"
+import { Scene, Option } from "./types"
 import { view } from "./view"
+import { makeSceneElements } from "./view"
+import { createEditButton } from "./view"
 
 /**
  * An application's state is the memory of the application.
@@ -56,7 +58,7 @@ export type State = Scene[]
 
 let state: State = []
 
-export const updateState = (action, payload) => {
+export const updateState = (action, payload?) => {
     if (action === 'proceed') {
         state = state.map((scene) => {
             return scene
@@ -73,15 +75,46 @@ export const updateState = (action, payload) => {
     } else if (action === 'save') {
         const saveCallback = (scene: Scene) => {
             if (payload.id === scene.id) {
+                // {
+
+                //     id: 0,
+                //     image: 'https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg',
+                //     action: 'You wake up in the morning',
+                //     options: [
+                //         'blah',
+                //         'blah2'
+                //     ]
+
+                // }
                 return payload
             }
             return scene
         }
         state = state.map(saveCallback)
+    } else if (action === 'addScene') {
+        const newScene: Scene = {
+            id: state.length,
+            action: 'New Title',
+            options: [
+                {
+                    text: 'Enter option text 1',
+                    id: undefined
+                        //how do you make this show a message that lets you input a number???
+                },
+                {
+                    text: 'Enter option text 2',
+                    id: undefined
+                }
+            ],
+            image: undefined,
+            editing: true,
+            //okay if scene has editing or not. But if it does, it has to be boolean. 
+        }
+        state = state.map(scene => scene)
+        state.push(newScene)
     }
     view(state)
     updateUrl()
-
 }
 
 
