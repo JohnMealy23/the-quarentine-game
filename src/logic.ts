@@ -2,6 +2,8 @@ import { updateState } from "./state"
 import { scenes } from "./scenes"
 import { Scene, Option, LiInputs } from "./types"
 import { createEditButton } from "./view"
+import Axios from "axios"
+
 
 /**
  * logic.ts is a file where we'll write functions that
@@ -40,18 +42,29 @@ import { createEditButton } from "./view"
  */
 
 export const move = (id: number | void) => {
+        const scenePromise = Axios.get(`http://localhost:3033/scenes/scene/${id}`)
+        scenePromise.then((response) => {
+            const scene = response.data.scene
+            if (!scene) {
+                //!scene = no scene
+                const endOfLine = document.createElement("h2")
+                endOfLine.textContent = 'The End'
+                document.body.appendChild(endOfLine)
+            }
+            updateState('proceed', scene)
+        })
 
-    const callback = (scene: Scene): boolean => {
-        return scene.id === id
-    }
+    // const callback = (scene: Scene): boolean => {
+    //     return scene.id === id
+    // }
 
-    const scene = scenes.find(callback)
-    if (scene === undefined) {
-        const endOfLine = document.createElement("h2")
-        endOfLine.textContent = 'The End'
-        document.body.appendChild(endOfLine)
-    }
-    updateState('proceed', scene)
+    // const scene = scenes.find(callback)
+    // if (scene === undefined) {
+    //     const endOfLine = document.createElement("h2")
+    //     endOfLine.textContent = 'The End'
+    //     document.body.appendChild(endOfLine)
+    // }
+    // updateState('proceed', scene)
 }
 const optionSaveCallback = ({optionLi, optionLiIdNumber}: LiInputs): Option => {
     const text = optionLi.value

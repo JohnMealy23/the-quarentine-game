@@ -5,6 +5,7 @@ import * as config from './config'
 import { scenes } from '../src/scenes';
 const app = express();
 
+
 const origin = `http://localhost:${config.clientPort}`
 const corsOptions = {
     origin,
@@ -23,6 +24,19 @@ app.get('/hello', (request, response) => {
         data: scenes,
     })
 })
+
+app.get('/scenes/scene/:sceneId', (request, response) => {
+    console.log(request.body)
+    const sceneId = Number(request.params.sceneId)
+    const callback = (scene) => {
+        return scene.id === sceneId
+    }
+    const scene = (scenes as any).find(callback)
+    console.log({sceneId})
+    return response.send({ scene })     
+})
+
+
 
 app.listen(config.port, () => {
     console.log(`Example app listening on port ${config.port}!`)
