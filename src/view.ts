@@ -4,14 +4,21 @@ import { scenes } from "./scenes";
 import { updateState } from "./state";
 
 //scene[] contains all the scenes previously selected by player
+
+//we've just come from state.ts, which called view(state), which should be an array with the scenes that have been chosen
 export const view = (scenes: Scene[]) => {
+    // we make a variable called gameContainer, which makes a content HTMLElement?? and makes it nothing???
     const gameContainer = document.getElementById('content')
     gameContainer.innerHTML = ''
 
+    // makes a sceneElems variable, which a new array which holds the results of calling makeSceneElements for each item in the scenes array
+    // it makes what you see on the page (ex: picture of queen, h2 headings, options, etc...)
     const sceneElems = scenes.map(makeSceneElements)
 
     sceneElems.forEach(sceneElem => gameContainer.appendChild(sceneElem))
+    // append each scene element into the gameContainer
 
+    // make a new button called addSceneElement, which says 'create scene.' When you click on it, it adds a scene, and appends it.
     const addSceneElement = document.createElement('button')
     addSceneElement.innerText = 'create scene'
     addSceneElement.addEventListener('click', addScene)
@@ -19,6 +26,9 @@ export const view = (scenes: Scene[]) => {
     // scroll user to bottom
     window.scrollTo(0, 1000)
 }
+//you finished the view function! go back to state.ts
+
+
 const addScene = () => {
     updateState('addScene')
 }

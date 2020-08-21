@@ -1,7 +1,5 @@
 import { updateState } from "./state"
-import { scenes } from "./scenes"
 import { Scene, Option, LiInputs } from "./types"
-import { createEditButton } from "./view"
 import Axios from "axios"
 
 
@@ -42,17 +40,38 @@ import Axios from "axios"
  */
 
 export const move = (id: number | void) => {
-        const scenePromise = Axios.get(`http://localhost:3033/scenes/scene/${id}`)
-        scenePromise.then((response) => {
-            const scene = response.data.scene
-            if (!scene) {
-                //!scene = no scene
-                const endOfLine = document.createElement("h2")
-                endOfLine.textContent = 'The End'
-                document.body.appendChild(endOfLine)
-            }
+    const scenePromise = Axios.get(`http://localhost:3033/scenes/scene/${id}`)
+    // move is a function that makes a Promise called scenePromise, that calls to the server using the url? 
+    scenePromise.then((response) => {
+        // then, we return the Promise
+        // This is what response looks like. It's a giant object. 
+        // config: {url: "http://localhost:3033/scenes/scene/0", method: "get", headers: {…}, transformRequest: Array(1), transformResponse: Array(1), …}
+        // data: {scene: {…}}
+        // headers: {content-length: "284", content-type: "application/json; charset=utf-8"}
+        // request: XMLHttpRequest {readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, onreadystatechange: ƒ, …}
+        // status: 200
+        // statusText: "OK"
+        // __proto__: Object
+
+        const scene = response.data.scene
+        // make a new variable called scene which burrows into the response object and gives us response.data.scene
+        // it looks something like this:
+        // action: "You wake up in the morning"
+        // id: 0
+        // image: "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg"
+
+        if (!scene) {
+            //!scene = no scene
+
+            // if scene (response.data.scene) is undefined, then we get the message: The End.
+            const endOfLine = document.createElement("h2")
+            endOfLine.textContent = 'The End'
+            document.body.appendChild(endOfLine)
+        } else {
+            //else, you call UpdateState with ('proceed', and scene)
             updateState('proceed', scene)
-        })
+        }
+    })
 
     // const callback = (scene: Scene): boolean => {
     //     return scene.id === id
@@ -66,7 +85,7 @@ export const move = (id: number | void) => {
     // }
     // updateState('proceed', scene)
 }
-const optionSaveCallback = ({optionLi, optionLiIdNumber}: LiInputs): Option => {
+const optionSaveCallback = ({ optionLi, optionLiIdNumber }: LiInputs): Option => {
     const text = optionLi.value
     const id = optionLiIdNumber.value
     return {

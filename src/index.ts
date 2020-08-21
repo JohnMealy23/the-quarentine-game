@@ -6,17 +6,21 @@ console.log('start')
 responsePromise.then((response) => {
     console.log(response)
 })
+
 console.log('next')
 const userProgress = window.location.search.replace('?', '')
 if (userProgress === '') {
     move(0)
 } else {
 
+    //takes the ;s out of userProgress and puts the stringified numbers into an array called stateIds:
     const stateIds = userProgress.split(';')
 
 
     console.log(userProgress)
 
+    //for each stringified number in stateIds, we call callbackMove, which turns that stringified number into a real number
+    //for each number, you call move
     const callbackMove = (id) => {
         const numId = parseInt(id)
         move(numId)
