@@ -1,8 +1,5 @@
-import { scenes } from "./scenes"
-import { Scene, Option } from "./types"
+import { Scene } from "./types"
 import { view } from "./view"
-import { makeSceneElements } from "./view"
-import { createEditButton } from "./view"
 import Axios from "axios"
 
 /**

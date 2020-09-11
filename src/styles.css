@@ -4,6 +4,33 @@
 }
 
 .option {
-    color:blue;
+    color:rgb(0, 0, 255);
     cursor: pointer;
+}
+
+.house {
+    background: rgb(255, 136, 0);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.kitchen {
+    background: rgba(255, 255, 0, 0.411);
+    width: 100px;
+    height: 50px;
+}
+
+.living-room {
+    background: rgba(95, 200, 95, 0.698);
+    width: 200px;
+    height: 100px;
+}
+
+.office {
+    background: rgba(206, 1, 206, 0.438);
+    width: 150px;
+    height: 175px;  
+}
+
+.room {
+    float: left;
 }

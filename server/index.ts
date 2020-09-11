@@ -2,9 +2,10 @@ import * as cors from 'cors'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as config from './config'
-import scenes from '../src/scenes';
 const app = express();
-const fs = require('fs')
+import * as fs from 'fs' 
+const scenesString = fs.readFileSync('./src/scenes.json', 'utf8')
+const scenes = JSON.parse(scenesString).data
 
 const origin = `http://localhost:${config.clientPort}`
 const corsOptions = {
@@ -29,7 +30,7 @@ app.get('/hello', (request, response) => {
 
 app.post('/edit', (request, response) => {
     const newScene = request.body.scene
-    console.log(request.body)
+    console.log('editBody', request.body)
     // replace existing scene in scenes array with incoming newScene
     // use .map?    
     const replaceNewScene = (scene) => {
@@ -46,7 +47,7 @@ app.post('/edit', (request, response) => {
     const newScenesString = JSON.stringify(newScenes, null, 4)
     // use fs node module to save scenes array to disk
     // use .writesync
-    fs.writeFileSync('../src/scenes', newScenesString)
+    fs.writeFileSync('../scenes', newScenesString)
     // or is it fs.writeFileSync('scenes.ts', response)
     // can I do this????? 
     // what happens with response?
