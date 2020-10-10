@@ -1,0 +1,176 @@
+{
+    "data": [
+        {
+            "id": 0,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "Good morning! It's 2020!",
+            "options": [
+                {
+                    "text": "Shit. ",
+                    "id": 1
+                },
+                {
+                    "text": "Go back to sleep. ",
+                    "id": 2
+                }
+            ],
+            "editing": false
+        },
+        {
+            "id": 1,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "Let's have tea. ",
+            "options": [
+                {
+                    "text": "No, it will stain your teeth. ",
+                    "id": 3
+                },
+                {
+                    "text": "Caffeine.",
+                    "id": 11
+                }
+            ],
+            "editing": false
+        },
+        {
+            "id": 2,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "The neighbors are coughing too loud.",
+            "options": [
+                {
+                    "text": "Brush teeth.",
+                    "id": 1
+                },
+                {
+                    "text": "Put the pillow over your head.",
+                    "id": 4
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "You hear coughing down the hall. What\"s the move?",
+            "options": [
+                {
+                    "text": "Make a face mask out of toilet paper.",
+                    "id": 5
+                },
+                {
+                    "text": "Cover your mouth and run by them!",
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "Haven\"t been to the laundromat in weeks.  Your pillow smells like old drool.",
+            "options": [
+                {
+                    "text": "FINE!  I\"LL BRUSH MY DAMN TEETH!",
+                    "id": 1
+                },
+                {
+                    "text": "Eh.  Time for coffee.",
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "action": "New Title",
+            "options": [
+                {
+                    "text": "Enter option text 1",
+                    "id": null
+                },
+                {
+                    "text": "Enter option text 2",
+                    "id": null
+                }
+            ],
+            "image": "undefined",
+            "editing": false
+        },
+        {
+            "id": 6,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "Past all the coughing people congregating in the hallway, you\"ve made it outside.",
+            "options": [
+                {
+                    "text": "Head to the bodega a block away.",
+                    "id": 9
+                },
+                {
+                    "text": "Let\"s get some real shopping done. Time to brave the grocery store.",
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "No coffee filters!",
+            "options": [
+                {
+                    "text": "Fashion one with toilet paper.",
+                    "id": 5
+                },
+                {
+                    "text": "Time to watch some Netflix.",
+                    "id": 8
+                }
+            ],
+            "editing": false
+        },
+        {
+            "id": 8,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "Your subscription has expired!",
+            "options": [
+                {
+                    "text": "beg your cousin for his login",
+                    "id": 12
+                },
+                {
+                    "text": "pirate it",
+                    "id": 13
+                },
+                {
+                    "text": "watch Hulu instead",
+                    "id": 14
+                }
+            ],
+            "editing": false
+        },
+        {
+            "id": 9,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "",
+            "options": []
+        },
+        {
+            "id": 10,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "Time to Shop",
+            "options": [],
+            "editing": false
+        },
+        {
+            "id": 11,
+            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
+            "action": "Nice work.  Teeth shiny, but the taste is foul.",
+            "options": [
+                {
+                    "text": "Deal with it.  Time for some Netflix.",
+                    "id": 8
+                },
+                {
+                    "text": "Nothing a little coffee won\"t cure...",
+                    "id": 7
+                }
+            ]
+        }
+    ]
+}

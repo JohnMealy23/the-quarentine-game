@@ -1,8 +1,6 @@
-import { scenes } from "./scenes"
 import { Scene, Option } from "./types"
 import { view } from "./view"
-import { makeSceneElements } from "./view"
-import { createEditButton } from "./view"
+import Axios from "axios"
 
 /**
  * An application's state is the memory of the application.
@@ -58,12 +56,28 @@ export type State = Scene[]
 
 let state: State = []
 
+//updateState takes two arguments: type, and payload. 
+// *   - `type` is a string that denotes how we'll update the
+// *     `state`. - state is an array
+// *   - `payload` is the information with which we'll be
+// *     updating the `state`.
+// We're just coming from logic.ts, which has called updateState with ('proceed', and scene)
+// so in this case, our type is 'proceed', and our payload is scene, which, as a reminder, looks like this:
+// action: "You wake up in the morning"
+// id: 0
+// image: "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg"
+
 export const updateState = (action, payload?) => {
     if (action === 'proceed') {
-        state = state.map((scene) => {
-            return scene
-        })
-        state.push(payload)
+        // using destructuring, you make a clone of the state, and simultaneously push the new scene (payload) into an array called state
+        state = [...state, payload]
+        // state = state.map((scene) => {
+        //     // if action is proceed, we return all of the scenes already in the state into state????
+        //     // you make a new state to prevent parity - if it changes elsewhere, it doesn't affect this state
+        //     return scene
+        // })
+        // //and then we push the payload,which is the new scene, into the state in addition with all the ones we just pushed in on line 76
+        // state.push(payload) 
     } else if (action === 'editMode') {
         const stateCallback = (scene: Scene) => {
             if (payload === scene.id) {
@@ -72,6 +86,8 @@ export const updateState = (action, payload?) => {
             return scene
         }
         state = state.map(stateCallback)
+
+        // ???? 
     } else if (action === 'save') {
         const saveCallback = (scene: Scene) => {
             if (payload.id === scene.id) {
@@ -91,6 +107,15 @@ export const updateState = (action, payload?) => {
             return scene
         }
         state = state.map(saveCallback)
+        const body = {
+            scene: payload
+        }
+        // tack on an axios request to the end of the editMode function - you don't need to change anything on the browser side
+        const https://nyu.zoom.us/j/96752156475Promise = Axios.post('http://localhost:3033/edit', body)
+        editModePromise.then((response) => {
+            return response
+        })
+
     } else if (action === 'addScene') {
         const newScene: Scene = {
             id: state.length,
@@ -99,7 +124,7 @@ export const updateState = (action, payload?) => {
                 {
                     text: 'Enter option text 1',
                     id: undefined
-                        //how do you make this show a message that lets you input a number???
+                    //how do you make this show a message that lets you input a number???
                 },
                 {
                     text: 'Enter option text 2',
@@ -112,16 +137,39 @@ export const updateState = (action, payload?) => {
         }
         state = state.map(scene => scene)
         state.push(newScene)
+    } else if (action === 'addOption') {
+        const newOption: Option = {
+            text: 'Enter option text',
+            id: undefined
+        }
+        const stateCallback = (scene: Scene) => {
+            if (payload === scene.id) {
+                scene.options.push(newOption)
+            }
+            return scene
+        }
+        state = state.map(stateCallback)
+        
     }
+
+    //then we call the view function, which we define in view.ts, with the new state
     view(state)
-    updateUrl()
+
+    //then we update the Url
+    updateUrl(state)
 }
 
-
-const updateUrl = () => {
+//updateUrl is a function that 
+//how does this scope business work if updateUrl is called in a smaller scope than where it's defined??
+const updateUrl = (state) => {
     const stateIds = state.map((scene) => {
+        // for each item of the state, which is a scene, return its scene id
         return scene.id
     }).join(';')
+    //stateIds is an array of numbers joined by ; 
     history.pushState(state, 'title', '?' + stateIds)
+    // adds ? + stateIds to the end of the url
+
     console.log(state)
 }
+

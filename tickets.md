@@ -4,6 +4,15 @@
 
 ## Features
 
+* when you click on option, and try to edit it, you cannot edit the options of the next scene. (Time to Shop)
+
+* multiple The Ends show up
+
+
+
+
+
+
 * figure out why you get the undefines when you create scene. also why it goes haywire.
 
 * make the id# of each scene visible to admin

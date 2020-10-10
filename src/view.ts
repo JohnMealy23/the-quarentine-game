@@ -4,14 +4,21 @@ import { scenes } from "./scenes";
 import { updateState } from "./state";
 
 //scene[] contains all the scenes previously selected by player
+
+//we've just come from state.ts, which called view(state), which should be an array with the scenes that have been chosen
 export const view = (scenes: Scene[]) => {
+    // we make a variable called gameContainer, which makes a content HTMLElement?? and makes it nothing???
     const gameContainer = document.getElementById('content')
     gameContainer.innerHTML = ''
 
+    // makes a sceneElems variable, which a new array which holds the results of calling makeSceneElements for each item in the scenes array
+    // it makes what you see on the page (ex: picture of queen, h2 headings, options, etc...)
     const sceneElems = scenes.map(makeSceneElements)
 
     sceneElems.forEach(sceneElem => gameContainer.appendChild(sceneElem))
+    // append each scene element into the gameContainer
 
+    // make a new button called addSceneElement, which says 'create scene.' When you click on it, it adds a scene, and appends it.
     const addSceneElement = document.createElement('button')
     addSceneElement.innerText = 'create scene'
     addSceneElement.addEventListener('click', addScene)
@@ -19,6 +26,9 @@ export const view = (scenes: Scene[]) => {
     // scroll user to bottom
     window.scrollTo(0, 1000)
 }
+//you finished the view function! go back to state.ts
+
+
 const addScene = () => {
     updateState('addScene')
 }
@@ -87,6 +97,7 @@ export const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) 
         let optionLi
         let optionLiIdNumber
         if (scene.editing === true) {
+            //make text field for editing options
             optionLi = document.createElement('input')
             optionLi.value = option.text
             optionLiIdNumber = document.createElement('input')
@@ -109,6 +120,16 @@ export const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) 
     }
     const optionLiArray = scene.options.map(liCallback)
 
+    if (scene.editing === true) {
+        const addOptionButton = document.createElement('button')
+        addOptionButton.innerText = 'create option'
+        const action = 'click'
+        const payload = () => {
+            updateState('addOption', scene.id)
+        }
+        addOptionButton.addEventListener(action, payload)
+        container.appendChild(addOptionButton)
+    }
     return container
 }
 
@@ -129,3 +150,4 @@ const createImageElement = (sceneImage) => {
     imageElement.className = 'sceneImage'
     return imageElement
 }
+
