@@ -3,32 +3,34 @@
         {
             "id": 0,
             "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
-            "action": "You wake up in the morning",
+            "action": "Good morning! It's 2020!",
             "options": [
                 {
-                    "text": "Brush your teeth.",
+                    "text": "Shit. ",
                     "id": 1
                 },
                 {
-                    "text": "Go back to sleep.",
+                    "text": "Go back to sleep. ",
                     "id": 2
                 }
-            ]
+            ],
+            "editing": false
         },
         {
             "id": 1,
             "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
-            "action": "Shit!  Out of toothpaste!  What now?!",
+            "action": "Let's have tea. ",
             "options": [
                 {
-                    "text": "Go to the store.",
+                    "text": "No, it will stain your teeth. ",
                     "id": 3
                 },
                 {
-                    "text": "Use baking soda.",
+                    "text": "Caffeine.",
                     "id": 11
                 }
-            ]
+            ],
+            "editing": false
         },
         {
             "id": 2,
@@ -77,18 +79,19 @@
         },
         {
             "id": 5,
-            "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
-            "action": "Don\"t be a fool!  You ran out of toilet paper a week ago!",
+            "action": "New Title",
             "options": [
                 {
-                    "text": "Go to the store.",
-                    "id": 3
+                    "text": "Enter option text 1",
+                    "id": null
                 },
                 {
-                    "text": "Time to watch some Netflix.",
-                    "id": 8
+                    "text": "Enter option text 2",
+                    "id": null
                 }
-            ]
+            ],
+            "image": "undefined",
+            "editing": false
         },
         {
             "id": 6,
@@ -118,7 +121,8 @@
                     "text": "Time to watch some Netflix.",
                     "id": 8
                 }
-            ]
+            ],
+            "editing": false
         },
         {
             "id": 8,
@@ -137,7 +141,8 @@
                     "text": "watch Hulu instead",
                     "id": 14
                 }
-            ]
+            ],
+            "editing": false
         },
         {
             "id": 9,
@@ -148,8 +153,9 @@
         {
             "id": 10,
             "image": "https://media3.s-nbcnews.com/i/newscms/2018_47/1387503/queen-elizabeth-bananas-today-main-181119_914937af794d2cd8192fdd9764225243.jpg",
-            "action": "",
-            "options": []
+            "action": "Time to Shop",
+            "options": [],
+            "editing": false
         },
         {
             "id": 11,

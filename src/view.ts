@@ -97,6 +97,7 @@ export const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) 
         let optionLi
         let optionLiIdNumber
         if (scene.editing === true) {
+            //make text field for editing options
             optionLi = document.createElement('input')
             optionLi.value = option.text
             optionLiIdNumber = document.createElement('input')
@@ -119,6 +120,16 @@ export const makeSceneElements = (scene: Scene, index: number, scenes: Scene[]) 
     }
     const optionLiArray = scene.options.map(liCallback)
 
+    if (scene.editing === true) {
+        const addOptionButton = document.createElement('button')
+        addOptionButton.innerText = 'create option'
+        const action = 'click'
+        const payload = () => {
+            updateState('addOption', scene.id)
+        }
+        addOptionButton.addEventListener(action, payload)
+        container.appendChild(addOptionButton)
+    }
     return container
 }
 
@@ -139,3 +150,4 @@ const createImageElement = (sceneImage) => {
     imageElement.className = 'sceneImage'
     return imageElement
 }
+

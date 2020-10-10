@@ -5,7 +5,7 @@ import * as config from './config'
 const app = express();
 import * as fs from 'fs' 
 const scenesString = fs.readFileSync('./src/scenes.json', 'utf8')
-const scenes = JSON.parse(scenesString).data
+let scenes = JSON.parse(scenesString).data
 
 const origin = `http://localhost:${config.clientPort}`
 const corsOptions = {
@@ -43,11 +43,14 @@ app.post('/edit', (request, response) => {
             return scene
         }
     }
-    const newScenes = scenes.map(replaceNewScene)
-    const newScenesString = JSON.stringify(newScenes, null, 4)
+    scenes = scenes.map(replaceNewScene)
+    const newObject = {
+        data: scenes
+    }
+    const newScenesString = JSON.stringify(newObject, null, 4)
     // use fs node module to save scenes array to disk
     // use .writesync
-    fs.writeFileSync('../scenes', newScenesString)
+    fs.writeFileSync('./src/scenes.json', newScenesString)
     // or is it fs.writeFileSync('scenes.ts', response)
     // can I do this????? 
     // what happens with response?

@@ -6,9 +6,30 @@
 .option {
     color:rgb(0, 0, 255);
     cursor: pointer;
+    font-size: 15px;
 }
 
-.house {
+body {
+    font-size: 14px;
+}
+
+h1 {
+    color: purple;
+    font-family: cursive;
+    font-size: 300%;
+    background-color: rgba(177, 215, 255, 0.358);
+}
+
+div {
+    color: rgba(0, 0, 255, 0.577);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgba(255, 127, 80, 0.228);
+}
+
+button {
+    color: red;
+}
+/* .house {
     background: rgb(255, 136, 0);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -33,4 +54,4 @@
 
 .room {
     float: left;
-}
+} */

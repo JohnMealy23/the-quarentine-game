@@ -1,4 +1,4 @@
-import { Scene } from "./types"
+import { Scene, Option } from "./types"
 import { view } from "./view"
 import Axios from "axios"
 
@@ -111,7 +111,7 @@ export const updateState = (action, payload?) => {
             scene: payload
         }
         // tack on an axios request to the end of the editMode function - you don't need to change anything on the browser side
-        const editModePromise = Axios.post('http://localhost:3033/edit', body)
+        const https://nyu.zoom.us/j/96752156475Promise = Axios.post('http://localhost:3033/edit', body)
         editModePromise.then((response) => {
             return response
         })
@@ -137,7 +137,21 @@ export const updateState = (action, payload?) => {
         }
         state = state.map(scene => scene)
         state.push(newScene)
+    } else if (action === 'addOption') {
+        const newOption: Option = {
+            text: 'Enter option text',
+            id: undefined
+        }
+        const stateCallback = (scene: Scene) => {
+            if (payload === scene.id) {
+                scene.options.push(newOption)
+            }
+            return scene
+        }
+        state = state.map(stateCallback)
+        
     }
+
     //then we call the view function, which we define in view.ts, with the new state
     view(state)
 
@@ -158,3 +172,4 @@ const updateUrl = (state) => {
 
     console.log(state)
 }
+
