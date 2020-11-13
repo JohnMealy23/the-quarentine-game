@@ -2,6 +2,24 @@ import { updateState } from "./state"
 import { Scene, Option, LiInputs } from "./types"
 import Axios from "axios"
 
+const array1 = [1, 2, 5, 8, 10, 21]
+const array2 = [2, 8, 21, 22, 25, 27]
+const newAnswer = [1, 5, 10, 22, 25, 27]
+const hwArray = (firstAr, secondAr) => {
+    const firstArReducer = (acc: number[], item: number) => {
+        // if item is found in array2, dont push into new array.
+        if (secondAr.includes(item) === false) {
+            acc.push(item)
+        }
+        return acc
+    }
+    const reduceAnswer = firstAr.reduce(firstArReducer, [])
+    return reduceAnswer
+}
+const finalAnswer = hwArray(array1, array2)
+
+
+
 
 /**
  * logic.ts is a file where we'll write functions that
